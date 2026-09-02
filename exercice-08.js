@@ -31,4 +31,4 @@ function validerInscription(donnees) {
 console.log(validerInscription(inscription))
 
 
-console.log(inscription.email.includes('@'))
+console.log(inscription.email.includes('@'));
