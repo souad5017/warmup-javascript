@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory Card Game</title>
+  <link href="/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <header class="game-header">
+    <h1>Memory Card Game</h1>
+    <div class="stats">
+      <span class="stat">Coups : <strong id="moves">0</strong></span>
+      <span class="stat">Paires trouvées : <strong id="pairs">0</strong> / 6</span>
+    </div>
+    <button class="restart-btn" onclick="recommencer()">Recommencer</button>
+  </header>
+
+  <div class="game-board" id="gameBoard">
+
+  </div>
+  <p class="win-message">Bravo, toutes les paires sont trouvées !</p>
+  <script>
+    let gameBoard = document.getElementById('gameBoard');
+
+    let firstCard = null, secondCard = null
+    let Coups = 0;
+    let found = 0;
+    const images = [
+      "/assets/bunny.png",
+      "/assets/cat.png",
+      "/assets/fox.png",
+      "/assets/koala.png",
+      "/assets/panda.png",
+      "/assets/penguin.png",
+    ]
+
+
+    let pairs = document.getElementById('pairs');
+    let moves = document.getElementById('moves');
+
+
+    let cards = [...images, ...images];
+
+    function createCards(images) {
+      cards.sort(() => Math.random() - 0.5);
+      cards.forEach(images => {
+        let card = document.createElement('div');
+        card.classList.add('card');
+
+        let cardInner = document.createElement('div');
+        cardInner.classList.add('card-inner');
+
+        let cardBack = document.createElement('div');
+        cardBack.classList.add('card-back');
+
+        let cardFront = document.createElement('div');
+        cardFront.classList.add('card-front');
+
+        let img = document.createElement('img');
+        img.src = images;
+        img.alt = 'CardImage';
+
+        cardFront.appendChild(img);
+
+        cardInner.appendChild(cardBack);
+        cardInner.appendChild(cardFront);
+
+        card.appendChild(cardInner);
+
+        gameBoard.appendChild(card);
+
+        card.addEventListener("click", () => {
+          if (!card.classList.contains("show")) {
+            card.classList.add("show")
+            if (!firstCard) {
+              firstCard = card
+            } else {
+              secondCard = card;
+
+              sameImages(firstCard, secondCard)
+
+              // console.log(firstCard , )
+            }
+          }
+        });
+      })
+    }
+
+
+    function recommencer() {
+      const cards = document.querySelectorAll(".card");
+      cards.forEach(card => {
+        if (card.classList.contains("show")) {
+          card.classList.remove("show")
+        }
+      })
+      let cardsArray = Array.from(cards);
+
+      cardsArray.sort(() => Math.random() - 0.5);
+
+      cardsArray.forEach(card => {
+        gameBoard.appendChild(card);
+      })
+
+
+      found = 0;
+      Coups = 0;
+      firstCard = null;
+      secondCard = null;
+      pairs.textContent = found;
+      moves.textContent = Coups;
+
+    }
+    function sameImages(firstCard, secondCard) {
+      //  console.log(firstCard , secondCard)
+      const firstImg = firstCard.querySelector('img');
+      const secondImg = secondCard.querySelector('img');
+
+      if (firstImg.src === secondImg.src) {
+        ++found
+        pairs.textContent = found;
+      } else {
+        ++Coups
+        moves.textContent = Coups;
+        firstCard = null;
+        secondCard = null;
+        setTimeout(() => {
+          firstCard.remove('show')
+
+        }, 1000)
+      }
+    }
+
+
+    createCards(images)
+
+  </script>
+
+
+
+  <script src="/script.js"></script>
+</body>
+
+</html>
