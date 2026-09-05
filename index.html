@@ -74,15 +74,15 @@
 
         card.addEventListener("click", () => {
           if (!card.classList.contains("show")) {
-            card.classList.add("show")
+            console.log(firstCard, secondCard)
             if (!firstCard) {
               firstCard = card
-            } else {
+              card.classList.add("show")
+            } else if (!secondCard) {
               secondCard = card;
-
+              card.classList.add("show")
               sameImages(firstCard, secondCard)
-
-              // console.log(firstCard , )
+              console.log(firstCard, secondCard)
             }
           }
         });
@@ -114,23 +114,30 @@
       moves.textContent = Coups;
 
     }
-    function sameImages(firstCard, secondCard) {
-      //  console.log(firstCard , secondCard)
+    function sameImages(first, second) {
+      //  console.log(first , second)
       const firstImg = firstCard.querySelector('img');
       const secondImg = secondCard.querySelector('img');
 
       if (firstImg.src === secondImg.src) {
         ++found
         pairs.textContent = found;
+        firstCard = null;
+        secondCard = null;
       } else {
         ++Coups
         moves.textContent = Coups;
-        firstCard = null;
-        secondCard = null;
-        setTimeout(() => {
-          firstCard.remove('show')
 
-        }, 1000)
+        console.log(firstCard, secondCard)
+        setTimeout(() => {
+          first.classList.remove('show');
+          second.classList.remove('show');
+
+          firstCard = null;
+          secondCard = null;
+
+        }, 1500)
+        console.log(firstCard, secondCard)
       }
     }
 
