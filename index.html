@@ -5,27 +5,67 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Memory Card Game</title>
-  <link href="/style.css" rel="stylesheet">
+  <link href="./style.css" rel="stylesheet">
 </head>
 
 <body>
   <header class="game-header">
     <h1>Memory Card Game</h1>
+    <div class="start-screen">
+      <div class="step" id="nameStep">
+        <h2>Entrez votre pseudo</h2>
+
+        <input type="text" placeholder="Votre pseudo" id="pseudo">
+
+        <button class="restart-btn" id="nameBtn">
+          Continuer
+        </button>
+      </div>
+
+
+      <div class="step" id="difficultyStep">
+
+        <h2>Choisissez une difficulté</h2>
+
+        <div class="difficulty">
+          <button class="level-btn" name="easy">
+            Easy
+          </button>
+
+          <button class="level-btn" name="medium">
+            Medium
+          </button>
+
+          <button class="level-btn" name="hard">
+            Hard
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+  <div class="game-container">
     <div class="stats">
       <span class="stat">Coups : <strong id="moves">0</strong></span>
-      <span class="stat">Paires trouvées : <strong id="pairs">0</strong> / 6</span>
+      <span class="stat">
+        Paires trouvées :
+        <strong id="pairs">0</strong> / <strong id="totalPairs">0</strong>
+      </span>
+      <span class="stat">
+        Temps : 00:<strong id="timer">00</strong>
+      </span>
     </div>
     <button class="restart-btn" onclick="recommencer()">Recommencer</button>
-  </header>
+    <p class="win-message">🎉 Bravo, toutes les paires sont trouvées !</p>
+    <p class="lose-message">Temps écoulé ⏱️ ! Vous avez perdu 😢</p>
+    <div class="game-board" id="gameBoard">
 
-  <div class="game-board" id="gameBoard">
+    </div>
 
   </div>
-  <p class="win-message">Bravo, toutes les paires sont trouvées !</p>
 
-
-
-  <script src="/script.js"></script>
+  <script src="./script.js"></script>
 </body>
 
 </html>

@@ -44,8 +44,112 @@ body {
     color: #7b5ea7;
 }
 
-/* Restart button */
+.start-screen {
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
 
+.start-screen h2 {
+    color: #f49aaa;
+    font-size: 28px;
+}
+
+.start-screen input {
+    width: 280px;
+    padding: 13px 18px;
+    border: 2px solid #d9cdf7;
+    border-radius: 15px;
+    outline: none;
+    font-size: 16px;
+    text-align: center;
+    background: white;
+}
+
+.start-screen input:focus {
+    border-color: #a38bd8;
+    box-shadow: 0 0 0 4px rgba(163, 139, 216, 0.15);
+}
+
+.start-screen .restart-btn {
+    padding: 12px 28px;
+    border: none;
+    border-radius: 15px;
+    background: #f49aaa;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.start-screen .restart-btn:hover {
+    transform: translateY(-2px);
+    background: #ee8498;
+}
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+#difficultyStep {
+  display: none;
+}
+
+.difficulty {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.level-btn {
+  border: 2px solid #d9cdf7;
+  padding: 10px 20px;
+  border-radius: 15px;
+  background: white;
+  color: #7b5ea7;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.level-btn:hover {
+  background: #f49aaa;
+  color: white;
+  border-color: #f49aaa;
+  transform: translateY(-2px);
+}
+
+.level-btn.selected {
+  background: #a38bd8;
+  color: white;
+  border-color: #a38bd8;
+}
+
+/* Restart button */
+.game-container {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.lose-message {
+    display: none;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #e74c3c;
+    margin-top: 20px;
+    padding: 15px 25px;
+    border-radius: 10px;
+}
 .restart-btn {
     border: none;
     padding: 11px 22px;
@@ -157,13 +261,12 @@ body {
 /* Win message */
 
 .win-message {
-    text-align: center;
-    margin-top: 30px;
-
-    font-size: 22px;
-    font-weight: bold;
-
-    color: #70b89a;
-
     display: none;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #70b89a;
+    margin-top: 20px;
+    padding: 15px 25px;
+    border-radius: 10px;
 }
