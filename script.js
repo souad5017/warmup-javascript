@@ -10,14 +10,15 @@ let time = 60;
 let timer = null;
 
 const images = [
-  "/assets/bunny.png",
-  "/assets/cat.png",
-  "/assets/fox.png",
-  "/assets/koala.png",
-  "/assets/panda.png",
-  "/assets/penguin.png",
-  "/assets/frog.png",
-  "/assets/lion.png",
+  "./assets/bunny.png",
+  "./assets/cat.png",
+  "./assets/cat.png",
+  "./assets/fox.png",
+  "./assets/koala.png",
+  "./assets/panda.png",
+  "./assets/penguin.png",
+  "./assets/frog.png",
+  "./assets/lion.png",
 ];
 
 let pairs = document.getElementById('pairs');
