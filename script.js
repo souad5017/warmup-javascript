@@ -8,10 +8,10 @@ let found = 0;
 let lockBoard = false;
 let time = 60;
 let timer = null;
+let score = 0;
 
 const images = [
   "./assets/bunny.png",
-  "./assets/cat.png",
   "./assets/cat.png",
   "./assets/fox.png",
   "./assets/koala.png",
@@ -35,6 +35,8 @@ const nameBtn = document.getElementById('nameBtn');
 
 const nameStep = document.getElementById('nameStep');
 const difficultyStep = document.getElementById('difficultyStep');
+const scoreSpan = document.getElementById('score');
+scoreSpan.style.display = 'none'
 
 let pseudo;
 
@@ -54,15 +56,14 @@ nameBtn.addEventListener("click", () => {
 const difficulties = document.querySelectorAll(".level-btn")
 
 let selectedDifficulty;
+const gameContainer = document.querySelector('.game-container');
+const startScreen = document.querySelector('.start-screen');
 
 difficulties.forEach(difficulty => {
 
   difficulty.addEventListener("click", () => {
 
     selectedDifficulty = difficulty.name;
-
-    const gameContainer = document.querySelector('.game-container');
-    const startScreen = document.querySelector('.start-screen');
 
     gameContainer.style.display = "flex";
     startScreen.style.display = "none";
@@ -94,6 +95,7 @@ function startTimer() {
     document.getElementById("timer").textContent = time
     if (time === 0) {
 
+      lockBoard = true;
       clearInterval(timer);
 
       const cards = document.querySelectorAll(".card");
@@ -103,6 +105,9 @@ function startTimer() {
       });
 
       document.querySelector('.lose-message').style.display = "block";
+      scoreSpan.style.display = "block";
+      scoreSpan.textContent > 0 ? scoreSpan.textContent = "Score : " + score : scoreSpan.textContent = "Score : " + 0
+
 
     }
 
@@ -195,7 +200,7 @@ function sameImages(first, second) {
   const firstImg = first.querySelector('img');
   const secondImg = second.querySelector('img');
 
-
+  console.log(score)
   if (firstImg.src === secondImg.src) {
 
     ++found;
@@ -206,17 +211,21 @@ function sameImages(first, second) {
 
     firstCard = null;
     secondCard = null;
+    score += 100;
 
 
     if (found === numberOfPairs) {
       document.querySelector('.win-message').style.display = "block";
+      scoreSpan.style.display = "block";
+      scoreSpan.textContent = "Score : " + score
       clearInterval(timer)
+
     }
 
   } else {
 
     lockBoard = true;
-
+    score -= 20;
     setTimeout(() => {
 
       first.classList.remove('show');
@@ -229,6 +238,12 @@ function sameImages(first, second) {
 
     }, 1500);
   }
+}
+function back() {
+  difficultyStep.style.display = "flex";
+  gameBoard.style.display = "none";
+
+
 }
 
 
@@ -259,6 +274,8 @@ function recommencer() {
 
   firstCard = null;
   secondCard = null;
+  score = 0;
+  scoreSpan.style.display = 'none';
 
   lockBoard = false;
 
