@@ -20,10 +20,31 @@ Les exercices permettent de pratiquer progressivement les bases de JavaScript ju
 - Exercice 08 : La validation du formulaire d'inscription
 - Exercice 09 : La remise fidélité
 - Exercice 10 : Le tableau de bord des ventes
+  
+## Projet : Memory Card Game
+
+Jeu de mémoire développé avec HTML, CSS et JavaScript.
+
+### Fonctionnalités
+
+-  Jeu de mémoire
+-  Mélange aléatoire des cartes
+-  Saisie du pseudo
+-  Plusieurs niveaux de difficulté
+-  Compteur de coups
+-  Compteur des paires trouvées
+-  Timer
+-  Message de victoire
+-  Message de défaite
+-  Bouton Recommencer
+
 
 ## Technologies
 
+- HTML
+- CSS
 - JavaScript
+- DOM
 - Git
 - GitHub
 
