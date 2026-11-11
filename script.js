@@ -54,6 +54,11 @@ nameBtn.addEventListener("click", () => {
 });
 
 const difficulties = document.querySelectorAll(".level-btn")
+const pairsByDifficulty = {
+  easy: 6,
+  medium: 6,
+  hard: 8,
+};
 
 let selectedDifficulty;
 const gameContainer = document.querySelector('.game-container');
@@ -64,20 +69,32 @@ difficulties.forEach(difficulty => {
   difficulty.addEventListener("click", () => {
 
     selectedDifficulty = difficulty.name;
+    numberOfPairs = pairsByDifficulty[selectedDifficulty];
+    totalPairs.textContent = numberOfPairs;
+
+    clearInterval(timer);
+    gameBoard.innerHTML = '';
+    gameBoard.style.display = 'grid';
+    firstCard = null;
+    secondCard = null;
+    lockBoard = false;
+    Coups = 0;
+    found = 0;
+    score = 0;
+    time = 60;
+    moves.textContent = Coups;
+    pairs.textContent = found;
+    document.getElementById('timer').textContent = time;
+    scoreSpan.style.display = 'none';
+    document.querySelector('.win-message').style.display = 'none';
+    document.querySelector('.lose-message').style.display = 'none';
 
     gameContainer.style.display = "flex";
     startScreen.style.display = "none";
 
-
-    console.log(selectedDifficulty)
-
+    createCards();
     if (selectedDifficulty === "easy") {
-      createCards();
       showCardsAtStart();
-    } else if (selectedDifficulty === "hard") {
-      numberOfPairs = 8;
-      totalPairs.textContent = numberOfPairs
-      createCards();
     }
     startTimer()
 
@@ -240,10 +257,13 @@ function sameImages(first, second) {
   }
 }
 function back() {
+  clearInterval(timer);
+  gameBoard.innerHTML = '';
+  gameBoard.style.display = 'grid';
+  gameContainer.style.display = 'none';
+  startScreen.style.display = 'flex';
+  nameStep.style.display = 'none';
   difficultyStep.style.display = "flex";
-  gameBoard.style.display = "none";
-
-
 }
 
 
